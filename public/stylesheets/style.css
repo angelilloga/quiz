@@ -19,6 +19,10 @@ body {
 	color: black;
 }
 
+.author-image{
+	width: 100px;
+}
+
 section > div {
 	padding: 20px;
 }

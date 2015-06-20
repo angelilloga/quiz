@@ -12,6 +12,7 @@ router.get('/', function(req, res) {
 //	Rutas del controller
 router.get('/quizes/question',quizController.question);
 router.get('/quizes/answer',quizController.answer);
+router.get('/author',quizController.author);
 //	Rutas del controller
 
 module.exports = router;
