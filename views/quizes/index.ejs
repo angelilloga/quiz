@@ -1,3 +1,11 @@
+<p>
+	<form method="get" action="/quizes">
+	  Pregunta:
+	  <input type="text" name="search" value="<%= search %>"/>
+	  <input type="submit" value="Buscar">
+	</form>
+</p>
+
 <table>
 <% var i; for (i=0; i < quizes.length; i++){ %>
 	<tr>
@@ -7,3 +15,7 @@
 	</tr>
 <% } %>
 </table>
+
+<% if(quizes.length == 0){ %>
+	<p>No se ha encontrado ninguna pregunta para esta búsqueda</p>
+<% } %>
