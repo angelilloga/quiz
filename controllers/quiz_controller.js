@@ -56,3 +56,27 @@ exports.index = function(req, res) {
 		});
 	})
 };
+
+//	GET /quizes/new
+exports.new = function(req, res) {
+	var quiz = models.Quiz.build({
+		pregunta: "pregunta",
+		respuesta: "Respuesta"
+	});
+
+	res.render('quizes/new', {
+		quiz: quiz
+	});
+};
+
+//	POST /quizes/create
+exports.create = function(req, res) {
+	var quiz = models.Quiz.build( req.body.quiz );
+
+	//	Guardar en base de datos los campos preguntas y respuestas	
+	quiz.save({
+		fields: ["pregunta", "respuesta"]
+	}).then(function() {
+		res.redirect('/quizes');
+	})	//	Redirect HTTP (URL relativo) lista de preguntas
+};
