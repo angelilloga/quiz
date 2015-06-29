@@ -1,4 +1,5 @@
 //	GET /author
 exports.author = function(req, res) {
-	res.render('author', {author: 'Angel Gallego'});
+	res.render('author', {author: 'Angel Gallego',
+		errors: []});
 };
