@@ -40,3 +40,12 @@ exports.destroy = function(req, res) {
 	res.redirect(req.session.redir.toString());
 
 };
+
+//	MW de autorizacion de accesos HTTP restringuidos
+exports.loginRequired = function(req, res, next) {
+	if (req.session.user) {
+		next();
+	} else {
+		res.redirect('/login');
+	}
+};
