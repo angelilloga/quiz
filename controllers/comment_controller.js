@@ -62,13 +62,10 @@ exports.create = function(req, res) {
 exports.publish = function(req, res) {
 	req.comment.publicado = true;
 
-	console.log("11111");
-
 	req.comment.save({
 			fields: ["publicado"]
 		})
 		.then(function() {
-console.log("22222");
 			res.redirect('/quizes/' + req.params.quizId);
 		}).catch(function(error) {
 			next(error)
