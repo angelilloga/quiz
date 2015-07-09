@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //  Helpers dinamicos
 app.use(function(req, res, next) {
-    
+ 
     //  guardar path en session.redir para despues de login
     if(!req.path.match(/\/login|\/logout/)){
         req.session.redir = req.path;
@@ -39,6 +39,24 @@ app.use(function(req, res, next) {
 
     //  Hacer visible req.session en las vistas
     res.locals.session = req.session;
+    next();
+});
+
+//  Autologout
+app.use(function(req, res, next) {
+    //comprobamos si hay usuario.
+    if(req.session.user){
+        console.log("La fecha: " + (new Date().getTime() - req.session.sessionDate));
+        if(req.session.sessionDate && 
+            (new Date().getTime() - req.session.sessionDate) > 120000) {
+            res.redirect('/logout');
+
+        } else {
+            //  Añadimos la hora de conexión a la sessión
+            req.session.sessionDate= new Date().getTime();
+
+        }   
+    } 
     next();
 });
 

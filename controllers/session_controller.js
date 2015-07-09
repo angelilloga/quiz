@@ -30,6 +30,9 @@ exports.create = function(req, res) {
 			username: user.username
 		};
 
+		//	Añadimos la hora de conexión a la sessión
+		req.session.sessionDate = new Date().getTime();
+
 		res.redirect(req.session.redir.toString());
 	});
 };
@@ -37,6 +40,7 @@ exports.create = function(req, res) {
 //	DELETE /logout  -- Destruir la sesion
 exports.destroy = function(req, res) {
 	delete req.session.user;
+	delete req.session.sessionDate;
 	res.redirect(req.session.redir.toString());
 
 };
