@@ -48,7 +48,7 @@ app.use(function(req, res, next) {
     if(req.session.user){
         console.log("La fecha: " + (new Date().getTime() - req.session.sessionDate));
         if(req.session.sessionDate && 
-            (new Date().getTime() - req.session.sessionDate) > 120) {
+            (new Date().getTime() - req.session.sessionDate) > 120000) {
             delete req.session.user;
             delete req.session.sessionDate;
 
